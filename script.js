@@ -9,11 +9,14 @@ const contractAddress = '0x4F9A0e7FD2Bf6067db6994CF12E4495Df938E6e9';
 
 function parseKeys() {
   const data = fs.readFileSync('keys.txt').toString();
+  if (data === '') {
+    throw Error('no keys');
+  }
   const keys = data.split('\n');
   return keys;
 }
 
-export async function fuck(min, max, maxTxs) {
+async function fuck(min, max, maxTxs) {
   const keys = parseKeys();
   let wallets = keys.map(key => new ethers.Wallet(key.startsWith('0x') ? key : '0x' + key, provider));
   let walletData = {};
@@ -140,4 +143,8 @@ export async function fuck(min, max, maxTxs) {
     console.log('\n');
     await new Promise(resolve => setTimeout(resolve, promiseTime));
   }
+}
+
+module.exports = {
+  fuck
 }
