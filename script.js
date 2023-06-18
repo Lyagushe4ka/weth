@@ -12,7 +12,7 @@ function parseKeys() {
   if (data === '') {
     throw Error('no keys');
   }
-  const keys = data.replace(/\\r/g, '').split('\n');
+  const keys = data.replaceAll('\r', '').split('\n'); 
   return keys;
 }
 
