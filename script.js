@@ -18,7 +18,7 @@ function parseKeys() {
 
 async function fuck(min, max, maxTxs) {
   const keys = parseKeys();
-  let wallets = keys.map(key => new ethers.Wallet(key.startsWith('0x') ? key : '0x' + key, provider));
+  let wallets = keys.map(key => new ethers.Wallet(key.replace('\r', '').startsWith('0x') ? key : '0x' + key, provider));
   let walletData = {};
   for (let i = 0; i < wallets.length; i++) {
     walletData[wallets[i].address] = {
