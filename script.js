@@ -103,7 +103,8 @@ export async function fuck(min, max, maxTxs) {
         continue;
       }
 
-      const value = balance.mul((Math.random() * 100).toFixed(0)).div(100);
+      // random value from 5% to 85% of balance
+      const value = balance.mul((Math.random() * 80 + 5).toFixed(0)).div(100);
 
       let deposit;
       let gasLimit;
